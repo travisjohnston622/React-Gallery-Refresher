@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import GalleryItem from '../GalleryItem/GalleryItem';
 
 class GalleryList extends Component {
 	render() {
 		const htmlArray = this.props.galleryInfo.map((item, index) => {
 			return (
 				<div key={index}>
-					<img src={item.path} alt={item.discription} />
+					<GalleryItem key={index} item={item} />
 				</div>
 			);
 		});
