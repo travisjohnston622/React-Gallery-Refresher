@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import Axios from 'axios';
+import GalleryList from '../GalleryList/GalleryList';
 
 class App extends Component {
+	state = {
+		galleryInfo: [],
+	};
+
 	componentDidMount() {
 		this.getGallery();
 	}
@@ -11,8 +16,11 @@ class App extends Component {
 			method: 'GET',
 			url: '/gallery',
 		})
-			.then((repsonse) => {
-				console.log(repsonse);
+			.then((response) => {
+				console.log(response);
+				this.setState({
+					galleryInfo: response.data,
+				});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -26,7 +34,7 @@ class App extends Component {
 				</header>
 				<br />
 				<p>Gallery goes here</p>
-				<img src='images/goat_small.jpg' />
+				<GalleryList galleryInfo={this.state.galleryInfo} />
 			</div>
 		);
 	}
