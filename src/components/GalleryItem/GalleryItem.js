@@ -18,7 +18,19 @@ class GalleryItem extends Component {
 		if (!this.state.showImage) {
 			imageElement = <p>{this.props.item.discription}</p>;
 		}
-		return <div onClick={this.showImage}>{imageElement}</div>;
+		return (
+			<div>
+				<div onClick={this.showImage}>{imageElement}</div>
+				<p>Likes:{this.props.item.likes}</p>
+				<button
+					onClick={(event) => {
+						this.props.putLike(this.props.item.id);
+					}}
+				>
+					Like
+				</button>
+			</div>
+		);
 	}
 }
 

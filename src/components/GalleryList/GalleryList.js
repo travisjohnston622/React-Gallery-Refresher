@@ -6,7 +6,7 @@ class GalleryList extends Component {
 		const htmlArray = this.props.galleryInfo.map((item, index) => {
 			return (
 				<div key={index}>
-					<GalleryItem key={index} item={item} />
+					<GalleryItem key={index} item={item} putLike={this.props.putLike} />
 				</div>
 			);
 		});

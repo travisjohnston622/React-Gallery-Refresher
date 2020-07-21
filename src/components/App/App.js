@@ -17,15 +17,27 @@ class App extends Component {
 			url: '/gallery',
 		})
 			.then((response) => {
-				console.log(response);
 				this.setState({
-					galleryInfo: response.data,
+					galleryInfo: response.data
 				});
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}
+	putLike = (id) => {
+		console.log(id);
+		Axios({
+			method: 'PUT',
+			url: '/gallery/like/' + id,
+		})
+			.then((response) => {
+				this.getGallery();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	render() {
 		return (
 			<div className='App'>
@@ -34,7 +46,10 @@ class App extends Component {
 				</header>
 				<br />
 				<p>Gallery goes here</p>
-				<GalleryList galleryInfo={this.state.galleryInfo} />
+				<GalleryList
+					galleryInfo={this.state.galleryInfo}
+					putLike={this.putLike}
+				/>
 			</div>
 		);
 	}
